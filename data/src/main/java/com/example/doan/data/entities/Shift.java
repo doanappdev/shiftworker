@@ -1,26 +1,27 @@
 package com.example.doan.data.entities;
 
+import java.util.Date;
+import org.parceler.Parcel;
+
 /**
  * Created by doanappdev@gmail.com on 26/3/17.
  */
-
+@Parcel
 public class Shift {
-  private int id;
-  private String start;
-  private String end;
-  private String startLatitude;
-  private String startLongitude;
-  private String endLatitude;
-  private String endLongitude;
-  private String image;
+  protected int id;
+  protected Date start;
+  protected String end;
+  protected String startLatitude;
+  protected String startLongitude;
+  protected String endLatitude;
+  protected String endLongitude;
+  protected String image;
 
   public int getId() {
     return id;
   }
 
-  public String getStart() {
-    return start;
-  }
+  public Date getStart() {return start;}
 
   public String getEnd() {
     return end;

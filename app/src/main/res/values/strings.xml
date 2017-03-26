@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">ShiftWorker</string>
+  <string name="key_shift">KEY_SHIFT</string>
+  <string name="shift_icon">Shift Icon</string>
 </resources>

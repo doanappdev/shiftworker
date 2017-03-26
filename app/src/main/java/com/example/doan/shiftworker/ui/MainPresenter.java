@@ -26,8 +26,6 @@ public class MainPresenter extends BasePresenter<MainPresenter.View> {
     void displayShiftList(List<Shift> shifts);
   }
 
-  private DisposableCompletableObserver shiftStartObserver;
-
   private GetBusinessInteractor businessInteractor;
   private GetShiftInteractor shiftInteractor;
 
@@ -60,18 +58,19 @@ public class MainPresenter extends BasePresenter<MainPresenter.View> {
         .subscribe(shifts -> printShiftDetails(shifts));
   }
 
-  private void printShiftDetails(List<Shift> shift) {
-    for(Shift s : shift) {
-      Log.d(TAG, "id : " + s.getId());
-      Log.d(TAG, "start : " + s.getStart());
-      Log.d(TAG, "end : " + s.getEnd());
-      Log.d(TAG, "startLatitude : " + s.getStartLatitude());
-      Log.d(TAG, "startLongitude : " + s.getStartLongitude());
-      Log.d(TAG, "endLatitude : " + s.getEndLatitude());
-      Log.d(TAG, "endLongitude : " + s.getEndLongitude());
-      Log.d(TAG, "startLatitude : " + s.getStartLatitude());
-      Log.d(TAG, "image : " + s.getImage());
-    }
+  private void printShiftDetails(List<Shift> shifts) {
+    view.displayShiftList(shifts);
+    //for(Shift s : shift) {
+    //  Log.d(TAG, "id : " + s.getId());
+    //  Log.d(TAG, "start : " + s.getStart());
+    //  Log.d(TAG, "end : " + s.getEnd());
+    //  Log.d(TAG, "startLatitude : " + s.getStartLatitude());
+    //  Log.d(TAG, "startLongitude : " + s.getStartLongitude());
+    //  Log.d(TAG, "endLatitude : " + s.getEndLatitude());
+    //  Log.d(TAG, "endLongitude : " + s.getEndLongitude());
+    //  Log.d(TAG, "startLatitude : " + s.getStartLatitude());
+    //  Log.d(TAG, "image : " + s.getImage());
+    //}
   }
 
   private void printBusinessInfo(Business business) {

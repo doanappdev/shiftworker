@@ -4,15 +4,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import butterknife.ButterKnife;
 import com.example.doan.shiftworker.R;
@@ -31,9 +32,6 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
   @Inject protected SharedPreferences prefs;
 
   protected UiComponent component() {
-    //need to comment this when adding new activity/presenter to UIComponent.
-    //then rebuild the app so the dependency is added to the DaggerUiComponent
-    //you can check the file to see if your activity/layout/presenter has been added
     return DaggerUiComponent.builder()
         .appComponent(ShiftWorkerApp.of(this).component())
         .build();
@@ -42,11 +40,11 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
   }
 
   @Override protected void onPostCreate(Bundle savedInstanceState) {
-    initToolbar(-1);
+    initToolbar(-1, false);
     ButterKnife.bind(this);
     super.onPostCreate(savedInstanceState);
   }
@@ -76,17 +74,20 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
   }
 
   /** Toolbar **/
-  private void initToolbar(int colorId) {
-    //Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-    //if(toolbar != null) setSupportActionBar(toolbar);
-    ////toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
-    //ActionBar actionBar = getSupportActionBar();
-    //if (actionBar != null) {
-    //  if (colorId != -1 && colorId != Color.TRANSPARENT) {
-    //    actionBar.setBackgroundDrawable(new ColorDrawable(colorId));
-    //  }
-    //  actionBar.setDisplayHomeAsUpEnabled(true);
-    //}
+  protected void initToolbar(int colorId, boolean isDisplayUpEnabled) {
+    Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+    if(toolbar != null) setSupportActionBar(toolbar);
+    //toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      if (colorId != -1 && colorId != Color.TRANSPARENT) {
+        actionBar.setBackgroundDrawable(new ColorDrawable(colorId));
+      }
+
+      if (isDisplayUpEnabled) {
+        actionBar.setDisplayHomeAsUpEnabled(true);
+      }
+    }
   }
 
   protected void setToolbarTitle(String title) {
@@ -112,9 +113,20 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     ActivityCompat.startActivity(fromActivity, intent, null);
   }
 
+  public static void launch(Activity fromActivity, Class<?> toActivity, Bundle args) {
+    Intent intent = new Intent(fromActivity, toActivity);
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+    intent.putExtras(args);
+    ActivityCompat.startActivity(fromActivity, intent, null);
+  }
+
   /**
    * Interface method used by sub view class to close out the activity
    */
   public void finishActivity() {finish();}
+
+  protected void displaySnackBar(View view, String msg) {
+    Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
+  }
 }
 
