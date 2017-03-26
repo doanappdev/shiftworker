@@ -32,11 +32,6 @@ public class DataModule {
     return new ApiServiceFactory(gson);
   }
 
-  //@Provides BusinessRepositoryImpl provideBusinessRepository(
-  //    BusinessService businessService, RxUtil rxUtil) {
-  //  return new BusinessRepositoryImpl(businessService, rxUtil);
-  //}
-
   @Provides @Singleton BusinessService provideBusinessService(ApiServiceFactory serviceFactory) {
     return serviceFactory.create(BusinessService.class);
   }

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import com.example.doan.data.retrofit.ApiServiceFactory;
 import com.example.doan.shiftworker.dagger.module.AppModule;
 import com.example.doan.data.dagger.DataModule;
-import com.example.doan.shiftworker.dagger.module.InteractorModule;
 import com.example.doan.shiftworker.interactor.GetBusinessInteractor;
 import com.example.doan.shiftworker.interactor.GetShiftInteractor;
 import com.google.gson.Gson;
@@ -19,8 +18,7 @@ import javax.inject.Singleton;
 @Singleton
 @Component(modules = {
     AppModule.class,
-    DataModule.class,
-    InteractorModule.class})
+    DataModule.class})
 public interface AppComponent {
   /** expose to sub-graph the following objects */
   Gson gson();

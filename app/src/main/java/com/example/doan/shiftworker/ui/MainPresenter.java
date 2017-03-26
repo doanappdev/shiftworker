@@ -1,4 +1,4 @@
-package com.example.doan.shiftworker;
+package com.example.doan.shiftworker.ui;
 
 import android.os.Handler;
 import android.util.Log;
@@ -23,6 +23,7 @@ public class MainPresenter extends BasePresenter<MainPresenter.View> {
   private static final String TAG = MainPresenter.class.getSimpleName();
   interface View extends BaseView {
     void printBusinessInfo(Business business);
+    void displayShiftList(List<Shift> shifts);
   }
 
   private DisposableCompletableObserver shiftStartObserver;
@@ -39,30 +40,24 @@ public class MainPresenter extends BasePresenter<MainPresenter.View> {
     businessInteractor
         .getBusiness()
         .subscribe(this::printBusinessInfo);
+  }
 
+  public void onStartShift() {
     shiftInteractor
         .shiftStart(new ShiftInfo())
         .subscribe();
+  }
 
-    Handler handler = new Handler();
-    handler.postDelayed(new Runnable() {
-      @Override public void run() {
-        shiftInteractor
-            .shiftEnd(new ShiftInfo())
-            .subscribe();
-      }
-    }, 5000);
+  public void onEndShift() {
+    shiftInteractor
+        .shiftEnd(new ShiftInfo())
+        .subscribe();
+  }
 
-
-    Handler listHandler = new Handler();
-    listHandler.postDelayed(new Runnable() {
-      @Override public void run() {
-        shiftInteractor.getShifts().subscribe(shifts -> printShiftDetails(shifts));
-      }
-    }, 10000);
-
-
-
+  public void onDisplayShifts() {
+    shiftInteractor
+        .getShifts()
+        .subscribe(shifts -> printShiftDetails(shifts));
   }
 
   private void printShiftDetails(List<Shift> shift) {
@@ -81,9 +76,5 @@ public class MainPresenter extends BasePresenter<MainPresenter.View> {
 
   private void printBusinessInfo(Business business) {
     view.printBusinessInfo(business);
-  }
-
-  private void printShiftStartResponse(Completable completable) {
-    Log.d(TAG, "completable = " + completable.toString());
   }
 }
