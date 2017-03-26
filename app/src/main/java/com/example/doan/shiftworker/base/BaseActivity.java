@@ -5,15 +5,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.inputmethod.InputMethodManager;
 import butterknife.ButterKnife;
+import com.example.doan.shiftworker.R;
 import com.example.doan.shiftworker.ShiftWorkerApp;
-import com.example.doan.shiftworker.dagger.DaggerUiComponent;
-import com.example.doan.shiftworker.dagger.UiComponent;
+
+import com.example.doan.shiftworker.dagger.component.DaggerUiComponent;
+import com.example.doan.shiftworker.dagger.component.UiComponent;
 import javax.inject.Inject;
 
 /**

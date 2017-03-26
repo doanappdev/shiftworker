@@ -7,7 +7,7 @@ import okhttp3.HttpUrl;
  * Created by doanappdev@gmail.com on 25/3/17.
  */
 
-public class ApiService extends BaseServiceFactory {
+public class ApiServiceFactory extends BaseServiceFactory {
   public static final HttpUrl BASE_URL = HttpUrl.parse("https://apjoqdqpi3.execute-api.us-west-2.amazonaws.com/dmc/");
   public static final String AUTH_SHA1 = "aa93e733a85dcd3e134fca45d926427e19a05afb1";
 

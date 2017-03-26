@@ -1,6 +1,7 @@
-package com.example.doan.shiftworker.dagger;
+package com.example.doan.shiftworker.dagger.component;
 
 import com.example.doan.shiftworker.MainActivity;
+import com.example.doan.shiftworker.dagger.PerActivity;
 import com.example.doan.shiftworker.dagger.component.AppComponent;
 import dagger.Component;
 
