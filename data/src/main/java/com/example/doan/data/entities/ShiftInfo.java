@@ -8,23 +8,25 @@ import java.util.Locale;
  * Created by doanappdev@gmail.com on 26/3/17.
  *
  * Sydney : -33.865143, 151.209900
+ * Brisbane: -27.470125, 153.021072
  */
 
 public class ShiftInfo {
-  public String time;
-  public double latitude;
-  public double longitude;
+  private String time;
+  private double latitude;
+  private double longitude;
 
   public ShiftInfo() {
-    //"time": "2017-01-17T06:35:57+00:00", (string, ISO 8601)
-    //"latitude": "0.00000", (string)
-    //"longitude": "0.00000" (string)
+  }
 
+  public ShiftInfo(double latitude, double longitude) {
+    time = getTimeStamp();
+    this.latitude = latitude;
+    this.longitude = longitude;
+  }
+
+  private String getTimeStamp() {
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'", Locale.ENGLISH);
-    Date date = new Date();
-    String dateTime = df.format(date);
-    time = dateTime;
-    latitude = -33.865143;
-    longitude = 151.209900;
+    return df.format(new Date());
   }
 }

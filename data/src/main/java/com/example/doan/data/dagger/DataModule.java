@@ -1,6 +1,8 @@
 package com.example.doan.data.dagger;
 
+import android.content.Context;
 import com.example.doan.data.RxUtil;
+import com.example.doan.data.location.LocationManager;
 import com.example.doan.data.retrofit.ApiServiceFactory;
 import com.example.doan.data.retrofit.api.BusinessService;
 import com.example.doan.data.retrofit.api.ShiftService;
@@ -38,5 +40,9 @@ public class DataModule {
 
   @Provides @Singleton ShiftService provideShiftService(ApiServiceFactory serviceFactory) {
     return serviceFactory.create(ShiftService.class);
+  }
+
+  @Provides @Singleton LocationManager provideLocationManager(Context context) {
+    return new LocationManager(context);
   }
 }

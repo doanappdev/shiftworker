@@ -2,6 +2,7 @@ package com.example.doan.shiftworker;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 import com.example.doan.shiftworker.dagger.component.AppComponent;
 import com.example.doan.shiftworker.dagger.component.AppComponentBuilder;
 
@@ -16,6 +17,11 @@ public class ShiftWorkerApp extends Application {
   @Override public void onCreate() {
     super.onCreate();
     appComponent = component();
+  }
+
+  @Override protected void attachBaseContext(Context base) {
+    super.attachBaseContext(base);
+    MultiDex.install(this);
   }
 
   public AppComponent component() {

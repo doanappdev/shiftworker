@@ -18,10 +18,4 @@ public class GetBusinessInteractor {
   public Observable<Business> getBusiness() {
     return businessRepository.getBusiness();
   }
-
-  //public Observable<String> getShiftTime() {
-  //  return businessRepository.getShiftTimes();
-  //}
-  //
-  //public String getShiftString() {return businessRepository.getShiftString();}
 }

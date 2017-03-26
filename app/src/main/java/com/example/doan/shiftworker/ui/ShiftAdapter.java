@@ -53,7 +53,7 @@ public class ShiftAdapter extends RecyclerView.Adapter<ShiftAdapter.ShiftViewHol
   public static class ShiftViewHolder extends RecyclerView.ViewHolder {
       @BindView(R.id.icon_iv) ImageView iconIv;
       @BindView(R.id.id_tv) TextView idTv;
-      @BindView(R.id.start_tv) TextView startTv;
+      @BindView(R.id.start_date_time_tv) TextView startTv;
 
     private OnShiftItemClick listener;
     private Shift shift;
@@ -65,7 +65,7 @@ public class ShiftAdapter extends RecyclerView.Adapter<ShiftAdapter.ShiftViewHol
     public void bindData(Context context, Shift shift, OnShiftItemClick listener) {
       Glide.with(context).load(shift.getImage()).into(iconIv);
       idTv.setText(String.valueOf(shift.getId()));
-      startTv.setText(shift.getStart().toString());
+      startTv.setText(shift.getStartDateTime().toString());
       this.listener = listener;
       this.shift = shift;
     }

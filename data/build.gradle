@@ -42,6 +42,8 @@ dependencies {
   compile 'com.android.support:appcompat-v7:25.3.0'
   testCompile 'junit:junit:4.12'
 
+  compile 'com.google.android.gms:play-services:10.2.1'
+
   //http://square.github.io/retrofit/
   compile 'com.squareup.retrofit2:retrofit:2.2.0'
   compile 'com.squareup.retrofit2:retrofit-mock:2.2.0'

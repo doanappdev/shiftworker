@@ -22,7 +22,7 @@ import javax.inject.Singleton;
 
 @Module
 public final class AppModule {
-  Context context;
+  private Context context;
 
   public AppModule(Context context) {this.context = context;}
 
@@ -45,10 +45,4 @@ public final class AppModule {
   @Provides @Singleton GetShiftInteractor provideGetShiftInteractor(ShiftService shiftService, RxUtil rxUtil) {
     return new GetShiftInteractor(new ShiftRepositoryImpl(shiftService, rxUtil));
   }
-
-
-  //@Provides @Singleton
-  //ResourceManager provideResourceManager() {
-  //  return new ResourceManager(context);
-  //}
 }

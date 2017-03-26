@@ -10,7 +10,7 @@ import org.parceler.Parcel;
 public class Shift {
   protected int id;
   protected Date start;
-  protected String end;
+  protected Date end;
   protected String startLatitude;
   protected String startLongitude;
   protected String endLatitude;
@@ -21,11 +21,9 @@ public class Shift {
     return id;
   }
 
-  public Date getStart() {return start;}
+  public Date getStartDateTime() {return start;}
 
-  public String getEnd() {
-    return end;
-  }
+  public Date getEndDateTime() {return end;}
 
   public String getStartLatitude() {
     return startLatitude;

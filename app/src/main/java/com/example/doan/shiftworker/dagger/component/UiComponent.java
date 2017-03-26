@@ -2,6 +2,7 @@ package com.example.doan.shiftworker.dagger.component;
 
 import com.example.doan.shiftworker.ui.MainActivity;
 import com.example.doan.shiftworker.dagger.PerActivity;
+import com.example.doan.shiftworker.ui.ShiftDetailActivity;
 import dagger.Component;
 
 /**
@@ -11,14 +12,6 @@ import dagger.Component;
 @PerActivity
 @Component(dependencies = AppComponent.class)
 public interface UiComponent {
-
-  /* Activities */
   void inject(MainActivity activity);
-  //void inject(ViewPagerActivity activity);
-  //void inject(SignatureActivity activity);
-
-  /* Layouts */
-  //void inject(InvoiceSummaryLayout layout);
-  //void inject(InvoiceLayout layout);
-
+  void inject(ShiftDetailActivity activity);
 }

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import butterknife.BindColor;
@@ -19,7 +18,8 @@ import java.util.List;
 import javax.inject.Inject;
 import org.parceler.Parcels;
 
-public class MainActivity extends BaseActivity implements MainPresenter.View,
+public class MainActivity extends BaseActivity implements
+    MainPresenter.View,
     ShiftAdapter.OnShiftItemClick {
 
   private static final String TAG = MainActivity.class.getSimpleName();
@@ -70,8 +70,6 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
   }
 
   @Override public void printBusinessInfo(Business business) {
-    Log.d(TAG, "business name : " + business.name);
-    Log.d(TAG, "business logo : " + business.logo);
     setToolbarTitle(business.name);
     Glide.with(this).load(business.logo).into(logoIv);
   }
@@ -85,8 +83,6 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
       adapter = new ShiftAdapter(this, shifts, this);
       shiftsRv.setLayoutManager(new LinearLayoutManager(this));
       shiftsRv.setAdapter(adapter);
-    } else {
-      adapter.notifyDataSetChanged();
     }
   }
 
