@@ -52,9 +52,8 @@ public class LocationManager implements
       // TODO: Consider calling ActivityCompat#requestPermissions
       return;
     }
-    startLocationUpdates();
     location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-    if(location == null){
+    if (location == null){
       startLocationUpdates();
     }
   }

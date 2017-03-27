@@ -1,5 +1,6 @@
 package com.example.doan.shiftworker.base;
 
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import org.reactivestreams.Subscription;
 
@@ -9,8 +10,7 @@ import org.reactivestreams.Subscription;
 
 public abstract class BasePresenter<V extends BaseView> {
   protected V view;
-  //protected Disposable disposable;
-  //protected CompositeSubscription subscriptions = new CompositeSubscription();
+  protected CompositeDisposable composites = new CompositeDisposable();
 
   public void attachView(V view) {
     this.view = view;
@@ -27,10 +27,10 @@ public abstract class BasePresenter<V extends BaseView> {
 
   public void detachView() {
     this.view = null;
-    //this.subscriptions.unsubscribe();
+    composites.dispose();
   }
 
-  public void addSubscription(Subscription subscription) {
-    //subscriptions.add(subscription);
+  public void addDisposable(Disposable disposable) {
+    composites.add(disposable);
   }
 }

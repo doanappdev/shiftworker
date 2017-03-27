@@ -16,7 +16,7 @@ public class ShiftDetailPresenter extends BasePresenter<ShiftDetailPresenter.Vie
 
   interface View extends BaseView {
     void setImage(String imageUrl);
-    void setId(int id);
+    void setId(long id);
     void setStartDateTime(String startDateTime);
     void setEndDateTime(String endDateTime);
     void setStartPosition(String lat, String lng);
@@ -29,8 +29,8 @@ public class ShiftDetailPresenter extends BasePresenter<ShiftDetailPresenter.Vie
   public void initData(Shift shift) {
     view.setImage(shift.getImage());
     view.setId(shift.getId());
-    view.setStartDateTime(getFormattedDateTime(shift.getStartDateTime()));
-    view.setEndDateTime(getFormattedDateTime(shift.getEndDateTime()));
+    view.setStartDateTime(getFormattedDateTime(shift.getStartDate()));
+    view.setEndDateTime(getFormattedDateTime(shift.getEndDate()));
     view.setStartPosition(shift.getStartLatitude(), shift.getStartLongitude());
     view.setEndPosition(shift.getEndLatitude(), shift.getEndLongitude());
   }

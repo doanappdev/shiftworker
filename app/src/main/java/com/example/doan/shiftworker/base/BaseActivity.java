@@ -91,12 +91,10 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
   }
 
   protected void setToolbarTitle(String title) {
-    //setToolbarTitle(title);
     if (getSupportActionBar() != null) getSupportActionBar().setTitle(title);
   }
 
   protected void setToolbarIcon(int iconResource) {
-    //setToolbarIcon(iconResource);
     if(getSupportActionBar() != null) {
       getSupportActionBar().setDisplayShowHomeEnabled(true);
       getSupportActionBar().setHomeAsUpIndicator(iconResource);

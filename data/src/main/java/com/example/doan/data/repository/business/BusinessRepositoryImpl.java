@@ -26,12 +26,4 @@ public class BusinessRepositoryImpl implements BusinessRepository {
         .subscribeOn(rxUtil.getSubscribeOnScheduler())
         .observeOn(rxUtil.getObserveOnScheduler());
   }
-
-  //@Override public Observable<String> getShiftTimes() {
-  //  return Observable.just("Test Data");
-  //}
-  //
-  //@Override public String getShiftString() {
-  //  return "Test String";
-  //}
 }

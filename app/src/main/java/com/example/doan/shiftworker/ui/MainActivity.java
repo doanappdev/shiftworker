@@ -1,5 +1,7 @@
 package com.example.doan.shiftworker.ui;
 
+import android.content.Context;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,27 +48,42 @@ public class MainActivity extends BaseActivity implements
   @Override protected void onPostCreate(Bundle savedInstanceState) {
     super.onPostCreate(savedInstanceState);
     presenter.attachView(this);
-    presenter.initData();
+    if (isWifiEnabled()) {
+      presenter.initData();
+    }
+    //TODO: add code to load logo and business name from realm database
+
     endShiftBtn.setEnabled(false);
     initToolbar(primaryColour, false);
   }
 
   @OnClick(R.id.start_shift_btn) void onStartShift() {
-    presenter.onStartShift();
-    displaySnackBar(mainContainer, "Shift has started");
-    startShiftBtn.setEnabled(false);
-    endShiftBtn.setEnabled(true);
+    if (isWifiEnabled()) {
+      presenter.onStartShift();
+      displaySnackBar(mainContainer, "Shift has started");
+      startShiftBtn.setEnabled(false);
+      endShiftBtn.setEnabled(true);
+    }
+    //TODO: add code to save shift info to realm database
   }
 
   @OnClick(R.id.end_shift_btn) void onEndShift() {
-    presenter.onEndShift();
-    displaySnackBar(mainContainer, "Shift has ended");
-    startShiftBtn.setEnabled(true);
-    endShiftBtn.setEnabled(false);
+    if (isWifiEnabled()) {
+      presenter.onEndShift();
+      displaySnackBar(mainContainer, "Shift has ended");
+      startShiftBtn.setEnabled(true);
+      endShiftBtn.setEnabled(false);
+    }
+    //TODO: add code to save shift info to realm database
   }
 
   @OnClick(R.id.display_shifts_btn) void onDisplayShifts() {
-    presenter.onDisplayShifts();
+    if (isWifiEnabled()) {
+      presenter.onDisplayShifts();
+    } else {
+      presenter.onDisplayShiftsRealm();
+      displaySnackBar(mainContainer, "Shift data read from database");
+    }
   }
 
   @Override public void printBusinessInfo(Business business) {
@@ -90,5 +107,10 @@ public class MainActivity extends BaseActivity implements
     Bundle bundle = new Bundle();
     bundle.putParcelable(getString(R.string.key_shift), Parcels.wrap(shift));
     launch(this, ShiftDetailActivity.class, bundle);
+  }
+
+  private boolean isWifiEnabled() {
+    WifiManager mng = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+    return mng.isWifiEnabled();
   }
 }

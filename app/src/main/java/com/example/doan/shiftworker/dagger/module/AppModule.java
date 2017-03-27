@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import com.example.doan.data.RxUtil;
+import com.example.doan.data.realm.RealmService;
 import com.example.doan.data.repository.shift.ShiftRepositoryImpl;
 import com.example.doan.data.retrofit.api.BusinessService;
 import com.example.doan.data.repository.business.BusinessRepositoryImpl;
 import com.example.doan.data.retrofit.api.ShiftService;
 import com.example.doan.shiftworker.interactor.GetBusinessInteractor;
+import com.example.doan.shiftworker.interactor.GetRealmInteractor;
 import com.example.doan.shiftworker.interactor.GetShiftInteractor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -44,5 +46,9 @@ public final class AppModule {
 
   @Provides @Singleton GetShiftInteractor provideGetShiftInteractor(ShiftService shiftService, RxUtil rxUtil) {
     return new GetShiftInteractor(new ShiftRepositoryImpl(shiftService, rxUtil));
+  }
+
+  @Provides @Singleton GetRealmInteractor provideRealmInteractor(RealmService realmService) {
+    return new GetRealmInteractor(realmService);
   }
 }

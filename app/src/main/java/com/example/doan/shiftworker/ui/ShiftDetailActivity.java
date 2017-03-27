@@ -44,7 +44,7 @@ public class ShiftDetailActivity extends BaseActivity implements ShiftDetailPres
     }
   }
 
-  @Override public void setId(int id) {
+  @Override public void setId(long id) {
     idTxt.setText(String.valueOf(id));
   }
 

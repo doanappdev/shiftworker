@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 import com.example.doan.shiftworker.dagger.component.AppComponent;
 import com.example.doan.shiftworker.dagger.component.AppComponentBuilder;
+import io.realm.Realm;
 
 /**
  * Created by doanappdev@gmail.com on 25/3/17.
@@ -17,6 +18,7 @@ public class ShiftWorkerApp extends Application {
   @Override public void onCreate() {
     super.onCreate();
     appComponent = component();
+    Realm.init(this);
   }
 
   @Override protected void attachBaseContext(Context base) {

@@ -3,13 +3,15 @@ package com.example.doan.data.dagger;
 import android.content.Context;
 import com.example.doan.data.RxUtil;
 import com.example.doan.data.location.LocationManager;
+import com.example.doan.data.realm.RealmService;
+import com.example.doan.data.realm.RealmServiceImpl;
 import com.example.doan.data.retrofit.ApiServiceFactory;
 import com.example.doan.data.retrofit.api.BusinessService;
 import com.example.doan.data.retrofit.api.ShiftService;
-import com.example.doan.data.repository.business.BusinessRepositoryImpl;
 import com.google.gson.Gson;
 import dagger.Module;
 import dagger.Provides;
+import io.realm.Realm;
 import javax.inject.Singleton;
 
 /**
@@ -42,7 +44,15 @@ public class DataModule {
     return serviceFactory.create(ShiftService.class);
   }
 
+  @Provides @Singleton RealmService provideRealmService(Realm realm) {
+    return new RealmServiceImpl(realm);
+  }
+
   @Provides @Singleton LocationManager provideLocationManager(Context context) {
     return new LocationManager(context);
+  }
+
+  @Provides @Singleton Realm provideRealmInstance() {
+    return Realm.getDefaultInstance();
   }
 }

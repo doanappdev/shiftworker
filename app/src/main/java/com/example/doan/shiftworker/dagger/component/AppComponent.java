@@ -6,6 +6,7 @@ import com.example.doan.data.location.LocationManager;
 import com.example.doan.shiftworker.dagger.module.AppModule;
 import com.example.doan.data.dagger.DataModule;
 import com.example.doan.shiftworker.interactor.GetBusinessInteractor;
+import com.example.doan.shiftworker.interactor.GetRealmInteractor;
 import com.example.doan.shiftworker.interactor.GetShiftInteractor;
 import com.google.gson.Gson;
 import dagger.Component;
@@ -27,5 +28,5 @@ public interface AppComponent {
 
   GetBusinessInteractor getBusinessInteractor();
   GetShiftInteractor getShiftInteractor();
-
+  GetRealmInteractor getRealmInteractor();
 }
