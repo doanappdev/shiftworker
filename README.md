@@ -1,2 +1,6 @@
 # shiftworker
-Demo app to display shift start and end times for shift workers
+Demo app to demonstrate using 
+- MVP design pattern
+- Dagger2
+- Retrofit
+- RxJava
